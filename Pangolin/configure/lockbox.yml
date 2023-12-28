@@ -16,9 +16,10 @@
   apikey: XXXXXXXXX
   keySecret: XXXXXXXXX
 
-10001T:
-  password: XXXXXXXXX
-  username: XXXXXXXXX
+4859222483:
+  apikey: f860249f62dac4831b413ff9a8d89a7c
+  keySecret: e5c65f7832547c998a2dc048240b7137c0bbe89d7c5916205e01f75693f6e1f9
+  passphrase: d538cb47976a542d2d6344fb29f75544d2cea6a51225c42a4d5488605e228f16
 
 ---
 #####################  prod各种验签、秘钥数据  #####################

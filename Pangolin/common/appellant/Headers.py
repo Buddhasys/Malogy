@@ -36,13 +36,13 @@ class Headers:
     def get_headers(self, userId=None) -> dict:
         """定制请求头"""
         headers = {  #### 没有默认给dev环境ID ####
-            "XXXX": str(userId) if userId else None
+            "XXXX": str(userId) if userId else 4859222483
         }
         logger.info(f"正在操作的用户是：\n{headers}")
         return headers
 
     def get_signed_headers(self, userId, req_data, req_way, urladd):
-        auth_info = self.__box[getattr(Env, self.__env).value].get(f"{userId}T")
+        auth_info = self.__box[getattr(Env, self.__env).value].get(userId)
         if not auth_info:
             return None, {
                 "code": "70004",
@@ -56,7 +56,8 @@ class Headers:
                 "ACCESS-SIGN": sign,
                 "ACCESS-PASSPHRASE": auth_info["passphrase"],
                 "Content-Type": "application/json",
-                "locale": "en-US"
+                "x-locale": "zh-CN",
+                "source": "api"
             }
 
         else:

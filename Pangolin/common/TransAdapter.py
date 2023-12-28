@@ -121,13 +121,13 @@ class TranAdapter:
         else:
             userId = None
             headers = {}
-        logger.info(f"请求头headers：{json.dumps(headers, ensure_ascii=False, indent=4)}")
+        headers.update(kwargs.get("header", {}))
+        logger.info(f"请求头headers：{json.dumps(headers, ensure_ascii=False, indent=4, default=str)}")
         logger.info(f"目标地址：{method or 'ws'}:{url}")
-        logger.info(f"\n==========开始发送请求报文========：\n{json.dumps(req_data, ensure_ascii=False, indent=4)}")
+        logger.info(f"\n==========开始发送请求报文========：\n{json.dumps(req_data, ensure_ascii=False, indent=4, default=str)}")
 
         if method in ["post", "get", "put", "delete"]:
             res = RequestAPI().request_route("http", "json", url, method, req_data, headers=headers)
-            req_data.update(headers)
         elif method in ["ws", "wss"]:
             kwargs = cls().__ws_special_treatment(ori_data, auth)
             res = RequestAPI().request_route(method=method, url=url, req_data=req_data, auth_data=headers, system=system, **kwargs)
@@ -187,10 +187,9 @@ class TranAdapter:
 
     def __get_unify_token(self, request, sms_type, url, method, req_data, headers):
         """获取token"""
-        logger.info(f"\n==========开始发送请求报文========：\n{json.dumps(req_data, ensure_ascii=False, indent=4)}")
+        logger.info(f"\n==========开始发送请求报文========：\n{json.dumps(req_data, ensure_ascii=False, indent=4, default=str)}")
         res = RequestAPI().request_route(request, sms_type, url, method, req_data, headers=headers)
-        result = json.dumps(res.json(), ensure_ascii=False, indent=4)
-
+        result = json.dumps(res.json(), ensure_ascii=False, indent=4, default=str)
         if Gda.get_single_value("code", result) == 11001 or not Gda.get_single_value("ucToken", result):
             token = Gda.get_single_value("token", result)
             req_data = {
@@ -200,7 +199,7 @@ class TranAdapter:
             }
             url.replace("login", "loginmfa")
             res = RequestAPI().request_route(request, sms_type, url, method, req_data, headers=headers)
-            result = json.dumps(res.json(), ensure_ascii=False, indent=4)
+            result = json.dumps(res.json(), ensure_ascii=False, indent=4, default=str)
 
         logger.info(f"\n==========返回的响应报文========：\n{result}")
 

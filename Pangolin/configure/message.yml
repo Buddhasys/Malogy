@@ -25,12 +25,29 @@ symbol: {
 ---
 ########################  合约报文模板  ########################
 ticker: {
-        "symbol": symbol,
-         "productType": COIN-FUTURES
+        "tradeType": "linearPerpetual",
+         "symbol": "BTCUSDT"
 }
 symbol: {
-        "symbol": symbol,
-         "productType": USDT-FUTURES
+        "symbol": BTCUSDT,
+        "tradeType": linearPerpetual
+}
+place: {
+        "tradeType": "linearPerpetual",
+        "symbol": "BTCUSDT",
+        "side": "buy",
+        "positionSide": "long",
+        "orderType": "limit",
+        "reduceOnly": false,
+        "marginType": "cross",
+        "price": "20000",
+        "priceType": "optimalN",
+        "orderQty": "1",
+        "clOrdId": "123456",
+        "postOnly": false,
+        "timeInForce": "GTC",
+        "currency": "",
+        "startTime": 0
 }
 
 
