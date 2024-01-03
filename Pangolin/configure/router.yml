@@ -12,7 +12,7 @@ ticker:
   auth: false
   method: get
   request: rest
-  path: /api/v2/spot/market/tickers
+  path: /v1/market/trade
 place:
   add: None
   auth: true
@@ -35,14 +35,20 @@ ticker:
   auth: false
   method: get
   request: rest
-  path: /api/v2/mix/market/ticker
+  path: /v1/market/ticker/24hr
 # 合约信息
 symbol:
   add: None
-  auth: false
+  auth: true
   method: get
   request: rest
-  path: /api/v2/mix/market/contracts
+  path: /v1/public/web/instruments
+place:
+  add: None
+  auth: true
+  method: post
+  request: rest
+  path: /v1/trade/orders
 
 Wsticker:
   add: None
@@ -55,11 +61,11 @@ Wsticker:
 ---
 ########################  各环境域名  ########################
 dev:
-  ws: wss://upex-nio-openapi.test7.tools
-  rest: http://upex-nio-openapi.test7.tools
+  ws: wss://test-futures-rest.abcdefg123.info
+  rest: http://test-futures-rest.abcdefg123.info
 test:
-  ws: wss://upex-nio-openapi.test7.tools
-  rest: http://upex-nio-openapi.test7.tools
+  ws: wss://test-futures-rest.abcdefg123.info
+  rest: http://test-futures-rest.abcdefg123.info
 pre:
   ws: wss://upex-nio-openapi.test7.tools
-  rest: http://upex-nio-openapi.test7.tools
+  rest: http://test-futures-rest.abcdefg123.info

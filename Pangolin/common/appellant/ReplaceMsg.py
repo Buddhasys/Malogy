@@ -25,7 +25,7 @@ class ReplaceMsg:
     def get_data(self, origin_data, test_data):
         """获取测试数据"""
         replace_data = {
-            "clientOrderId": str(time.strftime('%m%d%H%M%S',
+            "clOrdId": str(time.strftime('%m%d%H%M%S',
                             time.localtime())+str(time.time()).split('.')[-1])
         }
         # 正常场景
@@ -48,5 +48,5 @@ class ReplaceMsg:
         if "add" in test_data.keys():
             origin_data = self.Rep.addition_values_by_jsonpath(test_data.get("add"), origin_data)
 
-        logger.info(f"开始替换报文:\n{json.dumps(replace_data,ensure_ascii=False,indent=4)}")
+        logger.info(f"开始替换报文:\n{json.dumps(replace_data,ensure_ascii=False,indent=4, default=str)}")
         return self.Rep.replace_json_values(replace_data, origin_data)
