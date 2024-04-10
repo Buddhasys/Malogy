@@ -1,7 +1,7 @@
 """
 -------------------------------------------------
-        Author :    albertz.king
-        contact:    albertz.king@bitget.com
+        Author :    albertz
+        contact:    Buddha@sys.com
       File Name：   OrderBooks.py
            date：   2023/12/1
    Description :  铺单
@@ -11,10 +11,8 @@
 -------------------------------------------------
 """
 import math, time
-import threading
 from decimal import Decimal
 from threading import Thread
-from common.constants import Constants
 from common.GetDictData import GetDictData as Gda
 from common.TransAdapter import TranAdapter as Router
 
@@ -57,8 +55,8 @@ class OrderBooks:
             min_count = math.ceil(min_amount / curr_price / quantity_scale) * quantity_scale
             quantity = Decimal(str(max(min_count, quantity))) / quantity_scale
         while times:
-            buy = threading.Thread(target=cls().__place_order, args=[symbol, curr_price, config["price_scale"], quantity, notch, "buy"])
-            sell = threading.Thread(target=cls().__place_order, args=[symbol, curr_price, config["price_scale"], quantity, notch, "sell"])
+            buy = Thread(target=cls().__place_order, args=[symbol, curr_price, config["price_scale"], quantity, notch, "buy"])
+            sell = Thread(target=cls().__place_order, args=[symbol, curr_price, config["price_scale"], quantity, notch, "sell"])
             buy.start()
             sell.start()
             times -= 1

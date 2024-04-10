@@ -1,8 +1,9 @@
 import router from '../router'
 
 let util = {
-
 };
+util.baseURL = "/api"   // 本地调试使用
+// util.baseURL = "http://XXXX.grateway.com"   // 上线实际地址
 // 主站环境列表
 util.primEnvList = [
     {name: "dev", url: 'http://www.baidu.com'},

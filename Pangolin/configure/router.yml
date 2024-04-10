@@ -4,26 +4,26 @@ symbol:
   add: None
   auth: false
   method: get
-  request: rest
-  path: /api/v2/spot/public/symbols
+  request: sapi
+  path: /v4/public/symbol
 # 现货最新成交价
 ticker:
   add: None
   auth: false
   method: get
-  request: rest
-  path: /v1/market/trade
+  request: sapi
+  path: /v4/public/ticker/price
 place:
   add: None
   auth: true
   method: post
-  request: rest
-  path: /api/v2/spot/trade/place-order
+  request: sapi
+  path: /v4/order
 
 Wsticker:
   add: None
   auth: false
-  request: ws
+  request: sws
   channel: ticker
 
 
@@ -34,38 +34,66 @@ ticker:
   add: None
   auth: false
   method: get
-  request: rest
+  request: fapi
   path: /v1/market/ticker/24hr
 # 合约信息
 symbol:
   add: None
   auth: true
   method: get
-  request: rest
+  request: fapi
   path: /v1/public/web/instruments
 place:
   add: None
   auth: true
   method: post
-  request: rest
+  request: fapi
   path: /v1/trade/orders
 
 Wsticker:
   add: None
   auth: false
-  request: ws
+  request: fws
   channel: ticker
 
+---
+########################  钱包API路径  ########################
+withdraw:
+  add: None
+  auth: true
+  method: post
+  request: sapi
+  path: /v4/withdraw
+
+balance:
+  add: None
+  auth: true
+  method: get
+  request: sapi
+  path: /v4/balance
+
+
+---
+########################  用户中心API路径  ########################
 
 
 ---
 ########################  各环境域名  ########################
 dev:
-  ws: wss://test-futures-rest.abcdefg123.info
-  rest: http://test-futures-rest.abcdefg123.info
+  sws: wss://test-futures-rest.abcdefg123.info
+  fws: wss://test-futures-rest.abcdefg123.info
+  sapi: http://sapi.xt-dev.com
+  fapi: http://fapi.xt-dev.com
+  admin: http://manage.xt-dev.com
 test:
-  ws: wss://test-futures-rest.abcdefg123.info
-  rest: http://test-futures-rest.abcdefg123.info
+  sws: wss://test-futures-rest.abcdefg123.info
+  fws: wss://test-futures-rest.abcdefg123.info
+  sapi: http://sapi.xt-qa.com
+  fapi: http://fapi.xt-qa.com
+  admin: http://manage.xt-qa.com
 pre:
-  ws: wss://upex-nio-openapi.test7.tools
-  rest: http://test-futures-rest.abcdefg123.info
+  sws: wss://test-futures-rest.abcdefg123.info
+  fws: wss://test-futures-rest.abcdefg123.info
+  sapi: http://sapi.xt.com
+  fapi: http://fapi.xt.com
+  admin: http://manage.xt.com

@@ -1,7 +1,7 @@
 """
 -------------------------------------------------
-        Author :    albertz.yang
-        contact:    albertz.yang@poloniex.com
+        Author :    albertz
+        contact:    Buddha@sys.com
       File Name：   Headers
            date：   2021/12/28 12:11 下午
    Description :
@@ -48,24 +48,26 @@ class Headers:
                 "code": "70004",
                 "msg": "验签失败"
             }
-        sign, timestamp = Signature(**auth_info).create_sign(params=req_data, method=req_way.lower(), path=urladd, system=self.__sys)
-        if self.__sys in ["api", "spot", "future"]:
+        else:
             headers = {
-                "ACCESS-KEY": auth_info["apikey"],
-                "ACCESS-TIMESTAMP": str(timestamp),
-                "ACCESS-SIGN": sign,
-                "ACCESS-PASSPHRASE": auth_info["passphrase"],
-                "Content-Type": "application/json",
-                "x-locale": "zh-CN",
-                "source": "api"
+                "xt-validate-appkey": auth_info["apikey"],
+                "xt-validate-timestamp": 0,
+                "xt-validate-algorithms": "HmacSHA256",
+                "xt-validate-recvwindow": "60000"
             }
+        sign, timestamp = Signature(**auth_info).create_sign(params=req_data, method=req_way.lower(),
+                                                             path=urladd, system=self.__sys, headers=headers)
+        if self.__sys in ["api", "spot", "future", "wallet", "user"]:
+            headers.update({
+                "xt-validate-signature": sign
+            })
 
         else:
             headers = {
                 "PF-API-SIGN": sign,
                 "PF-API-TIMESTAMP": str(timestamp),
                 "PF-API-KEY": auth_info["apikey"],
-                "PF-API-PASSPHRASE": auth_info["password"]
+                "PF-API-PASSPHRASE": auth_info["passphrase"]
             }
         logger.info(f"成功获取【{self.__sys}】系统请求头")
         return headers

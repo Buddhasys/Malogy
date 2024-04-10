@@ -1,7 +1,7 @@
 """
 @author: Albertz
 @license: (C) Copyright 2021-2099, Node Supply Chain Manager Corporation Limited.
-@contact: albertz.yang@poloniex.com
+@contact: Buddha@sys.com
 @software: 
 @file: ConvertData
 @time:

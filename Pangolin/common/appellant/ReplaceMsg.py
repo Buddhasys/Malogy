@@ -1,7 +1,7 @@
 """
 -------------------------------------------------
-        Author :    albertz.yang
-        contact:    albertz.yang@poloniex.com
+        Author :    albertz
+        contact:    Buddha@sys.com
       File Name：   ReplaceMsg
            date：   2021/12/28 8:26 上午
    Description :
@@ -25,7 +25,7 @@ class ReplaceMsg:
     def get_data(self, origin_data, test_data):
         """获取测试数据"""
         replace_data = {
-            "clOrdId": str(time.strftime('%m%d%H%M%S',
+            "clientOrderId": str(time.strftime('%m%d%H%M%S',
                             time.localtime())+str(time.time()).split('.')[-1])
         }
         # 正常场景

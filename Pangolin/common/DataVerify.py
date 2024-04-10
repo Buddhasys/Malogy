@@ -1,7 +1,7 @@
 """
 @author: Albertz
 @license: (C) Copyright 2021-2099, Node Supply Chain Manager Corporation Limited.
-@contact: albertz.king@bitget.com
+@contact: Buddha@sys.com
 @software: 
 @file: DataVerify
 @time:
@@ -56,9 +56,9 @@ class DataVerify:
         @return:
         """
 
-        return cls().__compare_dict_data(actual_value, expect_value, desc_info, origin_value)
+        return cls()._compare_dict_data(actual_value, expect_value, desc_info, origin_value)
 
-    def __compare_dict_data(self, actual_value, expect_value, desc_info=None, origin_value=None):
+    def _compare_dict_data(self, actual_value, expect_value, desc_info=None, origin_value=None):
         """
         比对字段数据
         @param actual_value:

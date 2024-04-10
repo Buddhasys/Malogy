@@ -7,5 +7,5 @@ venv
 journal/*
 __pycache__
 *.temp
-temp.
+temp.*
 */__pycache__/

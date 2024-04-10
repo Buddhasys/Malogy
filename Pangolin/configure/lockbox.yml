@@ -17,9 +17,14 @@
   keySecret: XXXXXXXXX
 
 4859222483:
-  apikey: f860249f62dac4831b413ff9a8d89a7c
-  keySecret: e5c65f7832547c998a2dc048240b7137c0bbe89d7c5916205e01f75693f6e1f9
-  passphrase: d538cb47976a542d2d6344fb29f75544d2cea6a51225c42a4d5488605e228f16
+  apikey: f1c848dd-df23-455a-a486-8068f673c64a
+  keySecret: e582492c3406f701be66c0fd6a2a655270c15351
+  passphrase: XXXXXXXXX  #  若系统不需要可以删除
+
+5198077559725:
+  apikey: 8cb64bed-fff9-4b35-b387-4b7d3ca1250c
+  keySecret: 0518bd12fc122df21abdad7d64b9c408fb005f965
+
 
 ---
 #####################  prod各种验签、秘钥数据  #####################
@@ -31,3 +36,6 @@
   password: XXXXXXXXX
   username: XXXXXXXXX
 
+5238312141608:
+  apikey: 68951fe2-72b4-495e-a319-9ac01defe9ef
+  keySecret: ea23ee4bc0facf0081a89a509aaee32db4e28fb9

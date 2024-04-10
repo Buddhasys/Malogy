@@ -5,7 +5,18 @@ ticker: {
 symbol: {
         "symbol": symbol
 }
-
+place: {
+        "symbol": "BTCUSDT",
+        "clientOrderId": "12345678",
+        "side": "buy",
+        "type": "limit",
+        "timeInForce": "GTC",
+        "reduceOnly": false,
+        "bizType": "SPOT",
+        "price": "20000",
+        "quantity": "12",
+        "quoteQty": "1"
+}
 
 
 
@@ -33,24 +44,41 @@ symbol: {
         "tradeType": linearPerpetual
 }
 place: {
-        "tradeType": "linearPerpetual",
         "symbol": "BTCUSDT",
+        "clientOrderId": "12345678",
         "side": "buy",
-        "positionSide": "long",
-        "orderType": "limit",
-        "reduceOnly": false,
-        "marginType": "cross",
-        "price": "20000",
-        "priceType": "optimalN",
-        "orderQty": "1",
-        "clOrdId": "123456",
-        "postOnly": false,
+        "type": "limit",
         "timeInForce": "GTC",
-        "currency": "",
-        "startTime": 0
+        "reduceOnly": false,
+        "bizType": "SPOT",
+        "price": "20000",
+        "quantity": "12",
+        "quoteQty": "1"
 }
 
 
+
+
+
+---
+########################  钱包报文模板  ########################
+withdraw: {
+    "currency":"zb",
+    "chain":"Ethereum",
+    "amount":1000,
+    "address":"0xfa3abfa50eb2006f5be7831658b17aca240d8526",
+    "memo":""
+}
+
+balance: {
+        "currency": "usdt"
+}
+
+
+
+
+---
+########################  用户中心报文模板  ########################
 
 
 
