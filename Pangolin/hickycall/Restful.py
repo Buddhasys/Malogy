@@ -1,7 +1,7 @@
 """
 -------------------------------------------------
-        Author :    albertz.king
-        contact:    albertz.king@bitget.com
+        Author :    albertz
+        contact:    Buddha@sys.com
       File Name：   Restful.py
            date：   2023/12/2
    Description :

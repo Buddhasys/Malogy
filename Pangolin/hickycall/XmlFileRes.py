@@ -1,7 +1,7 @@
 """
 @author: Albertz
 @license: (C) Copyright 2021-2099, Node Supply Chain Manager Corporation Limited.
-@contact: albertz.king@bitget.com
+@contact: Buddha@sys.com
 @software:
 @file: ExcelDataProcess.py
 @time:

@@ -1,7 +1,7 @@
 """
 -------------------------------------------------
-        Author :    albertz.king
-        contact:    albertz.king@bitget.com
+        Author :    albertz
+        contact:    Buddha@sys.com
       File Name：   __init__.py.py
            date：   2023/11/24
    Description :   CI/CD、多语言检查、安装包

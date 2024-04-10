@@ -1,7 +1,7 @@
 """
 @author: Albertz
 @license: (C) Copyright 2021-2099, Node Supply Chain Manager Corporation Limited.
-@contact: albertz.yang@poloniex.com
+@contact: Buddha@sys.com
 @software: 
 @file: TransAdapter.py
 @time:
@@ -40,6 +40,12 @@ class TranAdapter:
     def __init__(self):
         self.Rem = ReplaceMsg()
         self.IO_name = None
+        self._index = {
+            "spot": 0,
+            "future": 1,
+            "wallet": 2,
+            "user": 3
+        }
 
     @classmethod
     def common_send(cls, ori_data: dict, trans_name=None, **kwargs):
@@ -61,7 +67,7 @@ class TranAdapter:
             cls().IO_name = trans_name
             env = ori_data.get("env", "test").lower()
             system = ori_data.get("system", "spot").lower()
-            enums = 0 if system == "spot" else 1
+            enums = cls()._index[system]
             # 获取系统适配信息
             router = Constants().load_yaml_all()
             if isinstance(router, dict):
@@ -91,7 +97,7 @@ class TranAdapter:
             message = Constants().load_yaml_all("message.yml")[enums].get(trans_name, {})
             req_data = cls().Rem.get_data(message, ori_data)
         header = Headers(system, env, auth)
-        if request not in ("ws", "rest"):
+        if request not in ("sws", "fws", "rest", "sapi", "fapi"):
             logger.warning(f"暂不支持处理该类型请求：{method}")
             result = {
                 "code": "70003",

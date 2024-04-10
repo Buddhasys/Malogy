@@ -1,7 +1,7 @@
 """
 -------------------------------------------------
-        Author :    albertz.yang
-        contact:    albertz.yang@poloniex.com
+        Author :    albertz
+        contact:    Buddha@sys.com
       File Name：   WebSocketRequest
            date：   2022/03/09 20:51 上午
    Description :

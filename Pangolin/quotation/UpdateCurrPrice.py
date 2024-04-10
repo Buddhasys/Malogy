@@ -1,7 +1,7 @@
 """
 -------------------------------------------------
-        Author :    albertz.king
-        contact:    albertz.king@bitget.com
+        Author :    albertz
+        contact:    Buddha@sys.com
       File Name：   UpdateCurrPrice.py
            date：   2023/12/2
    Description :  更新最新成交价

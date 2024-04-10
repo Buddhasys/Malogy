@@ -1,7 +1,7 @@
 """
 -------------------------------------------------
         Author :    albertz king
-        contact:    albertz.king@gmail.com
+        contact:    albertz@gmail.com
       File Name：   ResValidator.py
            date：   2023/05/26 6:33 下午
    Description :
@@ -35,7 +35,7 @@ class ResValidator:
             del _actual["data"], _expect["data"]
             actual_value.update(_actual)
             expect_value.update(_expect)
-        _compare = DataVerify().compare_dict_data(actual_value, expect_value, back=True)
+        _compare = DataVerify()._compare_dict_data(actual_value, expect_value)
         if not _compare[0] and not _compare[1]:
             return True, "校验成功"
         err = [_err[0] for _err in _compare[0]] if _compare[0] else []
