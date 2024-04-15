@@ -8,4 +8,6 @@ journal/*
 __pycache__
 *.temp
 temp.*
+demo.*
+Demo.*
 */__pycache__/

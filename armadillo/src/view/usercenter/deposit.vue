@@ -1,17 +1,10 @@
 <template>
   <el-card show="always" class="main-card">
     <el-form :model="form">
-      <!-- <el-form-item>
-          <el-radio-group v-model="bizType" @change="bizChange">
-              <el-radio size="large" label="coin" border>虚拟币</el-radio>
-              <el-radio size="large" label="experience" border>体验金</el-radio>
-              <el-radio size="large" label="deduction" border>抵扣金</el-radio>
-          </el-radio-group>
-      </el-form-item> -->
       <el-form-item>
         <el-select placeholder="选择环境" size="large" filterable v-model="form.env" style="width: 560px"
                    @change="queryCoin">
-          <el-option v-for="item in primEnvList" :value="item.url" :key="item">{{ item.name }}</el-option>
+          <el-option v-for="item in primEnvList" :value="item.name" :key="item">{{ item.name }}</el-option>
         </el-select>
       </el-form-item>
       <el-form-item>
@@ -33,10 +26,10 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-input size="large" placeholder="UID" v-model="form.account"></el-input>
+        <el-input size="large" placeholder="UID" v-model="form.UID"></el-input>
       </el-form-item>
-      <el-form-item label="充值金额">
-        <el-input size="large" v-model="form.chargeNum"></el-input>
+      <el-form-item>
+        <el-input size="large" placeholder="充值金额" v-model="form.amount"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button class="btn-center" type="success" size="large" round :loading="isLoading" @click="charge">充值
@@ -54,11 +47,9 @@ import axios from 'axios'
 let form = ref({
   env: "test1",
   coinId: "",
-  account: "",
-  chargeNum: 100,
-  keyType: "uid",
-  toAccountType:"",
-
+  UID: "",
+  amount: 100,
+  toAccountType: ""
 })
 let coinSelShow = ref(true)
 let bizType = ref("coin")
@@ -69,10 +60,12 @@ let primEnvList = utils.primEnvList
 let accountList = ref([{
   "accountName":"现货",
   "toAccountType":"1"
-},{
-  "accountName":"全仓杠杆",
-  "toAccountType":"10"
-}])
+},
+  // {
+  // "accountName":"全仓杠杆",
+  // "toAccountType":"10"
+// }
+])
 
 const charge = () => {
   coinList.value.forEach((element) => {
@@ -86,7 +79,7 @@ const charge = () => {
   let apiPath = ""
   let postData = {}
   if (bizType.value === 'coin') {
-    apiPath = "/account/chargeSubmit"
+    apiPath = "/api/usercenter/deposit"
     postData = form.value
   } else {
     apiPath = "/proxy/flask/get_user_card"
@@ -98,24 +91,24 @@ const charge = () => {
       cardType = 2
     }
     postData["env"] = form.value.env
-    postData["uid"] = form.value.account
-    postData["card_type"] = cardType
-    postData["amount"] = form.value.chargeNum
+    postData["uid"] = form.value.UID
+    postData["amount"] = form.value.amount
     postData["tokenid"] = coinSel.value
   }
 
 
 
   axios.post(apiPath, postData).then(resp => {
+    // console.log({resp})
     isLoading.value = false
     if (resp.data.code === '0000') {
       ElMessage({
-        message: resp.data.message,
+        message: resp.data.msg,
         type: 'success'
       })
     } else {
       ElMessage({
-        message: resp.data.message,
+        message: resp.data.msg,
         type: 'error'
       })
     }
@@ -131,14 +124,12 @@ const charge = () => {
 const queryCoin = (env) => {
   form.value.env = env
   axios
-      .post("/account/queryCoin", {
+      .get("/api/coinslist", {
         env: env,
       })
       .then((resp) => {
-        coinList.value = resp.data.data;
-        coinList.value.push({ coinName: 'SUSDT', coinId: 'SUSDT' })
-        coinList.value.push({ coinName: 'SUSD', coinId: 'SUSD' })
-        coinList.value.push({ coinName: 'SUSDC', coinId: 'SUSDC' })
+        // console.log({resp})
+        coinList.value = resp.data;
       });
 }
 const bizChange = () => {

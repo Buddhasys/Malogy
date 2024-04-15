@@ -18,9 +18,10 @@ from common.TransAdapter import TranAdapter as Router
 class Deposit:
     
     @classmethod
-    def admin_deposit(cls, env="test", amount=1000, coin="USDT"):
+    def admin_deposit(cls, UID=12345, env="test", amount=1000, coinId="1", **kwargs):
         """
                 后台充值
+                :param UID: 用户UID
                 :param env: 环境
                 :param amount: 充值数量
                 :param token: 充值币种
@@ -29,8 +30,16 @@ class Deposit:
         obj = AdminInfo(env)
         if isinstance(obj.token, dict):
             return obj.token
-        res = obj.admin_deposit(amount, coin, obj)
-
+        res = obj.admin_deposit(UID, amount, coinId, obj)
+        if Gda.get_single_value("code", res) != "0000":
+            return {
+                "code": Gda.get_single_value("code", res),
+                "msg": f'充值失败：{Gda.get_single_value("msg", res)}'
+            }
+        return {
+            "code": "0000",
+            "msg": "充值成功!"
+        }
 
     def inter_withdraw(self, env="test", amount=1000, token="USDT",
                  chain="Ethereum", address=None, memo=""):

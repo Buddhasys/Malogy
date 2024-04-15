@@ -79,12 +79,12 @@ class AdminInfo:
         return access_token
 
     @classmethod
-    def admin_deposit(cls, amount, coin, obj: object):
+    def admin_deposit(cls, account, amount, coinId, obj: object):
         """后台虚增资产"""
         data = {
             "googleCode": "111111",
-            "userId": 5198077559725,
-            "coinId": 2,
+            "userId": account,
+            "coinId": coinId,
             "remark": "",
             "amount": f"{amount}",
             "type": 1,
@@ -97,7 +97,8 @@ class AdminInfo:
         }
         url = obj._host + "/xt-fund-trans/fund/addOrSub/apply"
         res = requests.post(url=url, json=data, headers=header).json()
-        b = 0
+
+        return res
 
 
 if __name__ == '__main__':
